@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import './style.scss'
+import './styles/style.scss'
 
 import Home from './components/Home'
 
@@ -19,3 +19,4 @@ ReactDOM.render(
   <App />,
   document.getElementById('root')
 )
+
