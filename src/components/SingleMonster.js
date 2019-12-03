@@ -1,6 +1,5 @@
 import React from 'react'
 import useFetch from '../hooks/useFetch'
-import MonsterList from './MonsterList'
 
 
 //need to actually pass down the proprs here cause otherwise how does it know what slug is
@@ -8,19 +7,59 @@ import MonsterList from './MonsterList'
 const SingleMonster = (props) => {
 
   //get the single monster api structre
-  const slug = this.props.match.params.slug
-  const data = useFetch(`https://api.open5e.com/monsters/${slug}`)
-  
+
+  const slug = props.match.params.slug
+  const monster = useFetch(`https://api.open5e.com/monsters/${slug}`)
+  console.log(typeof monster.speed)
+  if (!monster.speed) { console.log('loading') } else {
+    console.log(Object.keys(monster.speed))
+    console.log(Object.values(monster.speed))
+  }
+
+
+
+  if (!monster.name) {
+    return <h1>Loading</h1>
+  }
   return (
+
     <div>
-      <h1>RAWR Monster</h1>
-      {data.map((monster, i) => {
-        return (
-          <p key={i}>  
-            {monster.name}
-          </p>
-        )
-      })}
+
+      <div className='card monster'>
+        <section className='overview'>
+          <h1>{monster.name}</h1>
+          <p className='subtitle'>{monster.size} {monster.type} {monster.subtype && `(${monster.subtype})`}</p>
+        </section>
+        <section className='stats'>
+          <p className='title'>Armour Class</p>
+          <p>{monster.armor_class} ({monster.armor_desc})</p>
+          <p className='title'>Hit Points</p>
+          <p>{monster.hit_points} ({monster.hit_dice})</p>
+          <p className='title'>Speed</p>
+          {Object.entries(monster.speed).map(([key,value])=>{
+            return (
+              <p key={key}>{key}, {value}</p>
+            )
+          })}
+        
+          
+
+          <div className='core-stats'>
+
+          </div>
+
+        </section>
+        <section className='abilities'>
+
+        </section>
+        <section className='actions'>
+
+        </section>
+        <section className='legendary-actions'>
+
+        </section>
+      </div>
+
     </div>
   )
 }

@@ -13,7 +13,8 @@ const App = () => (
     <Switch>
       <Route exact path='/' component={Home} />
       <Route exact path='/monsters' component={MonsterList} />
-      <Route exact path='/monsters/:id' component={SingleMonster} />
+      <Route exact path='/monsters/:slug' component={SingleMonster} />
+      
     </Switch>
   </BrowserRouter>
 
