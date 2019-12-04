@@ -1,3 +1,4 @@
+/* eslint-disable brace-style */
 import React from 'react'
 import useFetch from '../hooks/useFetch'
 
@@ -10,14 +11,20 @@ const SingleMonster = (props) => {
 
   const slug = props.match.params.slug
   const monster = useFetch(`https://api.open5e.com/monsters/${slug}`)
-  console.log(typeof monster.speed)
-  if (!monster.speed) { console.log('loading') } else {
-    console.log(Object.keys(monster.speed))
-    console.log(Object.values(monster.speed))
+  // console.log(typeof monster.speed)
+  // if (!monster.speed) { console.log('loading') } else {
+  //   console.log(Object.keys(monster.speed))
+  //   console.log(Object.values(monster.speed))
+  // }
+
+  //calculate the monster stat modifier (can probably extract this to calculations later)
+  //round down (stat - 10 ) / 2
+  function statModifier(stat) {
+    return Math.floor((stat - 10) / 2)
   }
 
 
-
+  //loading
   if (!monster.name) {
     return <h1>Loading</h1>
   }
@@ -41,11 +48,33 @@ const SingleMonster = (props) => {
               <p key={key}>{key}, {value}</p>
             )
           })}
-        
-          
-
           <div className='core-stats'>
-
+            <ul>
+              <li>
+                <span className='title'>STR</span>
+                <span>{monster.strength} ( {statModifier(monster.strength)} )</span>
+              </li>
+              <li>
+                <span className='title'>DEX</span>
+                <span>{monster.dexterity} ( {statModifier(monster.dexterity)} )</span>
+              </li>
+              <li>
+                <span className='title'>CON</span>
+                <span>{monster.constitution} ( {statModifier(monster.constitution)} )</span>
+              </li>
+              <li>
+                <span className='title'>INT</span>
+                <span>{monster.intelligence} ( {statModifier(monster.intelligence)} )</span>
+              </li>
+              <li>
+                <span className='title'>CHA</span>
+                <span>{monster.charisma} ( {statModifier(monster.charisma)} )</span>
+              </li>
+              <li>
+                <span className='title'>WIS</span>
+                <span>{monster.wisdom} ( {statModifier(monster.wisdom)} )</span>
+              </li>
+            </ul>
           </div>
 
         </section>
