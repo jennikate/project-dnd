@@ -6,7 +6,7 @@ function useFetch(url, initialState = []) {
   useEffect(() => {
     fetch(url)
       .then(resp => resp.json())
-      .then(resp => setData(resp)) //need results here for Open5e API, figure out how to make this a param esp cause I don't want results for single monster
+      .then(resp => setData(resp)) 
       .catch(err => console.log(err))
     return () => console.log('Route changed')
   }, [])
