@@ -12,10 +12,21 @@ const SingleMonster = (props) => {
 
 
   //turn the objects we need into arrays for us to map :: can probably extract some of these out to function/calculations later
+  const [monsterDetail, setMonsterDetail] = useState([])
   const [speed, setSpeed] = useState([])
   const [saves, setSaves] = useState([])
 
-  // //create array from monster objects and speed objects so can map them
+  //create array from monster object
+  function getMonsters() {
+    let monsterDetail = []
+    for (const [key, value] of Object.entries(monster)) {
+      monsterDetail = [...monsterDetail]
+      monsterDetail.push({ key, value })
+      setMonsterDetail(monsterDetail)
+    }
+  }
+
+  // //create array from speed objects so can map them
   function getSpeed() {
     const speedArr = []
     if (monster.length === 0) {
@@ -31,14 +42,16 @@ const SingleMonster = (props) => {
 
   //create array of save stats
   function getSaves() {
-    if (monster.length === 0) {
+    if (monsterDetail.length === 0) {
       console.log('saves - waiting on data')
     }
     else {
       console.log('saves got data')
-      console.log(monster)
-
-     //THIS NEEDS TO GET OBJECTS WITH _save AND TURN INTO AN ARRAY SO CAN MAP TO UI
+      const saves = monsterDetail.filter(elem => {
+        return elem.key.includes('_save')
+      })
+      console.log(saves)
+      setSaves(saves)
     }
   }
 
@@ -61,25 +74,18 @@ const SingleMonster = (props) => {
 
 
 
-  // //Find the saves
-  function saveStats() {
-    //I think I should be able to map or filter this, but monster is an object and I ran into trouble so using for atm
-    for (var key in monster) {
-      if (key.endsWith('_save') && monster[key] !== null) {
-        const saveKey = key
-        const saveValue = monster[key]
-        return saveKey, saveValue
-      }
-    }
-  }
 
 
   //run the functions when the monster data changes
   useEffect(() => {
+    getMonsters()
     getSpeed()
     getSaves()
   }, [monster])
-
+  //run when monsterDetail array is populated
+  useEffect(() => {
+    getSaves()
+  }, [monsterDetail])
 
 
   //loading
@@ -133,10 +139,9 @@ const SingleMonster = (props) => {
                 <span>{monster.wisdom} ( {statModifier(monster.wisdom)} )</span>
               </li>
             </ul>
-            {saveStats(() => {
-              console.log(saveKey, saveValue)
+            {saves.map((elem, i) => {
               return (
-                <p>{saveKey}, {saveValue}</p>
+                elem.value && <p key={i}>{elem.key.replace('_', ' ')}: {elem.value}</p>
               )
             })}
           </div>
