@@ -12,21 +12,21 @@ const SingleMonster = (props) => {
 
 
   //turn the objects we need into arrays for us to map :: can probably extract some of these out to function/calculations later
-  const [monsterDetail, setMonsterDetail] = useState([])
+  const [monsterArray, setMonsterArray] = useState([])
   const [speed, setSpeed] = useState([])
   const [saves, setSaves] = useState([])
 
   //create array from monster object
-  function getMonsters() {
+  function makeMonsterArray() {
     let monsterDetail = []
     for (const [key, value] of Object.entries(monster)) {
       monsterDetail = [...monsterDetail]
       monsterDetail.push({ key, value })
-      setMonsterDetail(monsterDetail)
+      setMonsterArray(monsterDetail)
     }
   }
 
-  // //create array from speed objects so can map them
+  // //create array from speed object so can map them
   function getSpeed() {
     const speedArr = []
     if (monster.length === 0) {
@@ -42,23 +42,17 @@ const SingleMonster = (props) => {
 
   //create array of save stats
   function getSaves() {
-    if (monsterDetail.length === 0) {
+    if (monsterArray.length === 0) {
       console.log('saves - waiting on data')
     }
     else {
       console.log('saves got data')
-      const saves = monsterDetail.filter(elem => {
+      const saves = monsterArray.filter(elem => {
         return elem.key.includes('_save')
       })
-      console.log(saves)
       setSaves(saves)
     }
   }
-
-
-
-
-
 
 
   //calculate the monster stat modifier (can probably extract this to calculations later)
@@ -78,14 +72,14 @@ const SingleMonster = (props) => {
 
   //run the functions when the monster data changes
   useEffect(() => {
-    getMonsters()
+    makeMonsterArray()
     getSpeed()
     getSaves()
   }, [monster])
   //run when monsterDetail array is populated
   useEffect(() => {
     getSaves()
-  }, [monsterDetail])
+  }, [monsterArray])
 
 
   //loading
@@ -139,18 +133,17 @@ const SingleMonster = (props) => {
                 <span>{monster.wisdom} ( {statModifier(monster.wisdom)} )</span>
               </li>
             </ul>
-            {saves.map((elem, i) => {
-              return (
-                elem.value && <p key={i}>{elem.key.replace('_', ' ')}: {elem.value}</p>
-              )
-            })}
           </div>
         </section>
 
 
         <section className='abilities'>
           <p className='title'>Saving Throws</p>
-          <p></p>
+          {saves.map((elem, i) => {
+            return (
+              elem.value && <p key={i}>{elem.key.replace('_', ' ')}: {elem.value}</p>
+            )
+          })}
         </section>
 
 
