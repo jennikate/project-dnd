@@ -1,4 +1,65 @@
+/* ================================== */
+/*  STYLES                            */
+/* ================================== */
 
-body {
+@import url('https://fonts.googleapis.com/css?family=Cinzel:400,700,900|Open+Sans&display=swap');
+
+$font-title: 'Cinzel', serif;
+$font: 'Open Sans', sans-serif;
+
+.hide {
+  display: none;
+}
+
+
+/* ================================== */
+/*  STRUCTURE                         */
+/* ================================== */
+
+header {
   background-color: red;
+}
+
+section {
+  border: 1px solid green;
+}
+
+.container {
+ border: 1px solid blue;
+}
+
+.flex-horizontal {
+  display: flex;
+  align-items: baseline;
+}
+
+/* ================================== */
+/*  TEXT                              */
+/* ================================== */
+
+h1 {
+  font-family: $font-title;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-right: 1rem;
+  // text-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+}
+h2 {
+  font-family: $font-title;
+  font-size: 1.5rem;
+}
+
+.overview {
+  text-transform: initial;
+}
+
+.stat-title {
+  color: green;
+}
+.stat-value {
+  color: blue;
+}
+
+.my-list li a {
+  text-transform: capitalize;
 }

@@ -8,16 +8,21 @@ import './styles/style.scss'
 import Home from './components/Home'
 import MonsterList from './components/MonsterList'
 import SingleMonster from './components/SingleMonster'
+import Header from './components/Header'
 
 const App = () => (
-  <BrowserRouter>
-    <Switch>
-      <Route exact path='/' component={Home} />
-      <Route exact path='/monsters' component={MonsterList} />
-      <Route exact path='/monsters/:slug' component={SingleMonster} />
-      
-    </Switch>
-  </BrowserRouter>
+  <>
+    <BrowserRouter>
+      <Header />
+
+      <Switch>
+        <Route exact path='/' component={Home} />
+        <Route exact path='/monsters' component={MonsterList} />
+        <Route exact path='/monsters/:slug' component={SingleMonster} />
+
+      </Switch>
+    </BrowserRouter>
+  </>
 
 )
 

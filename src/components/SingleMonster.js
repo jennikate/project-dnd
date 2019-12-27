@@ -40,16 +40,18 @@ const SingleMonster = (props) => {
     return <h1>Loading</h1>
   }
   return (
-    <div className='card monster'>
-      <Type data={monster} />
-      <CoreStats data={monster} />
-      <Saves data={monsterArray} />
-      <Abilities data={monster} />
-      <Skills data={monster} />
-      <Actions data={monster} />
-      <Legendary data={monster} />
-      <CharSpells data={monster} />
-    </div>
+    <section className='section'>
+      <div className='container monster'>
+        <Type data={monster} />
+        <CoreStats data={monster} />
+        <Saves data={monsterArray} />
+        <Abilities data={monster} />
+        <Skills data={monster} />
+        <Actions data={monster} />
+        <Legendary data={monster} />
+        <CharSpells data={monster} />
+      </div>
+    </section>
   )
 }
 

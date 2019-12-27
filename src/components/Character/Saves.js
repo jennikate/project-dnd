@@ -13,7 +13,7 @@ const Abilities = (data) => {
 
   return (
     <div className='abilities'>
-      <p className='title'>Saving Throws</p>
+      <h2>Saving Throws</h2>
       {saves.map((elem, i) => {
         return (
           elem.value && <p key={i}>{elem.key.replace('_', ' ')}: {elem.value}</p>
