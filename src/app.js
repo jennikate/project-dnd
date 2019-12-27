@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
+import 'bulma/css/bulma.css'
 import './styles/style.scss'
 
 import Home from './components/Home'
