@@ -8,6 +8,7 @@ to do
 [ ] Create random encounter generator form
 
 [ ] Setup a spellbook
+[ ] Link spells on monster sheets to spellbook
 
 [ ] Setup monster search with suggest as you type
 

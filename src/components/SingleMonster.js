@@ -9,9 +9,9 @@ import Abilities from './Character/Abilities'
 import Skills from './Character/Skills'
 import Languages from './Character/Languages'
 import Challenge from './Character/Challenge'
+import SpecialAbilities from './Character/SpecialAbilities'
 import Actions from './Character/Actions'
 import Legendary from './Character/Legendary'
-import CharSpells from './Character/CharSpells'
 
 
 
@@ -53,9 +53,11 @@ const SingleMonster = (props) => {
           <Languages data={monster} />
           <Challenge data={monster} />
         </div>
-        <Actions data={monster} />
-        <Legendary data={monster} />
-        <CharSpells data={monster} />
+        <div className='dnd-block'>
+          <SpecialAbilities data={monster} />
+          <Actions data={monster} />
+          <Legendary data={monster} />
+        </div>
       </div>
     </section>
   )

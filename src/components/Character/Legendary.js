@@ -3,33 +3,25 @@ import React from 'react'
 const Legendary = (data) => {
 
   return (
-    <div>
+    <>
       {data.data.legendary_actions &&
-        <>
-          <h2>Legendary Actions</h2>
-          <p>{data.data.legendary_desc}</p>
-          <ul>
-            {data.data.legendary_actions.map((elem, i) => {
-              return (
-                <li key={i}><span className='inline-title'>{elem.name}</span>: {elem.desc}</li>
-              )
-            })}
-          </ul>
-        </>
+        <h2>Legendary Actions</h2>
       }
-      {data.data.special_abilities &&
-        <>
-          <h3>Special Abilities</h3>
-          <ul>
-            {data.data.special_abilities.map((elem, i) => {
-              return (
-                <li key={i}><span className='inline-title'>{elem.name}</span>: {elem.desc}</li>
-              )
-            })}
-          </ul>
-        </>
+      {data.data.legendary_actions &&
+        data.data.legendary_actions.map((elem, i) => {
+          return (
+            <p key={i} className='dnd-desc'><em className='dnd-item-title'>{elem.name}</em>
+              {elem.desc}
+              {/* 
+              these are blended into the description above, if I want to pull them out for styling I have to manipulate the string from desc
+              {elem.attack_bonus && <span>{elem.attack_bonus} to hit</span>}
+              {elem.damage_dice && <span><em>Hit</em>: {elem.damage_dice}</span>}
+              {elem.damage_bonus && <span>Damage bonus: {elem.damage_bonus}</span>} */}
+            </p>
+          )
+        })
       }
-    </div>
+    </>
   )
 }
 
