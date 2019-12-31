@@ -41,7 +41,7 @@ const SingleMonster = (props) => {
   }
   return (
     <section className='section'>
-      <div className='container monster'>
+      <div className='container dnd-card'>
         <Type data={monster} />
         <CoreStats data={monster} />
         <Saves data={monsterArray} />

@@ -4,38 +4,40 @@ import arrayFromObj from '../../hooks/arrayFromObj'
 const Type = (data) => {
 
   return (
-    <div className='overview'>
-      <div className='flex-horizontal'>
+    <>
+      <div className='dnd-section'>
         <h1>{data.data.name}</h1>
-        <p>CR: {data.data.challenge_rating}</p>
+        <p className='dnd-desc'><em>{data.data.size} {data.data.type}{data.data.subtype && ` (${data.data.subtype})`}, {data.data.alignment}</em></p>
       </div>
 
-      <div>
-        <p>{data.data.size} {data.data.type}{data.data.subtype && ` (${data.data.subtype})`}, {data.data.alignment}</p>
+      <div className='dnd-section'>
+        <p>
+          <span className='dnd-item-title'>Armour Class </span>
+          {data.data.armor_class} ({data.data.armor_desc})
+        </p>
+        <p>
+          <span className='dnd-item-title'>Hit Points </span>
+          {data.data.hit_points} ({data.data.hit_dice})
+        </p>
+        <p><span className='dnd-item-title'>Speed </span>
+          {arrayFromObj(data.data.speed).map((elem, i) => {
+            return (
+              <span key={i}>{(i ? ', ' : '') + `${elem.value} ft. ${elem.type}`}</span>
+            )
+          })}
+        </p>
+      </div>
+
+     
+
+        <p>CR: {data.data.challenge_rating}</p>
+
         {data.data.languages && <p>Languages: {data.data.languages}</p>}
         <p>Speed:</p>
-        {arrayFromObj(data.data.speed).map((elem, i) => {
-          return (
-            <p key={i}><span className='stat-title'>{elem.type}</span> <span className='stat-value'>{elem.value}</span></p>
-          )
-        })}
-      </div>
 
-      <div className='flex-horizontal'>
-        <div className='card stats'>
-          <p className='stat-title'>Armour Class</p>
-          <p className='stat-value'>{data.data.armor_class}</p>
-          <p>({data.data.armor_desc})</p>
-        </div>
 
-        <div className='card stats'>
-          <p className='stat-title'>Hit Points</p>
-          <p className='stat-value'>{data.data.hit_points}</p>
-          <p>({data.data.hit_dice})</p>
-        </div>
-      </div>
 
-    </div>
+    </>
   )
 }
 

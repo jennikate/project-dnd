@@ -6,6 +6,16 @@
 
 $font-title: 'Cinzel', serif;
 $font: 'Open Sans', sans-serif;
+$card-font: serif;
+
+$title-color: red;
+$card-text-color: red;
+$base-color: black;
+
+
+$card-top: yellow;
+$card-line: red;
+$card-back: tan;
 
 .hide {
   display: none;
@@ -24,13 +34,14 @@ section {
   border: 1px solid green;
 }
 
-.container {
- border: 1px solid blue;
-}
-
 .flex-horizontal {
   display: flex;
   align-items: baseline;
+}
+
+.flex-horizontal li {
+  margin: 0 0.5rem;
+  text-align: center;
 }
 
 /* ================================== */
@@ -53,13 +64,38 @@ h2 {
   text-transform: initial;
 }
 
-.stat-title {
-  color: green;
-}
-.stat-value {
-  color: blue;
+
+/* ================================== */
+/*  CARDS                             */
+/* ================================== */
+
+.dnd-card {
+  border-top: 5px solid $card-top;
+  border-bottom: 5px solid $card-top;
+  margin: 2rem;
+  background-color: $card-back;
+  font-family: $card-font;
+  color: $card-text-color;
 }
 
-.my-list li a {
-  text-transform: capitalize;
+.dnd-section {
+  border-bottom: 4px solid $card-line;
+  margin: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.dnd-item-title {
+  color: $card-text-color;
+  font-weight: bold;
+}
+
+.dnd-desc {
+  color: $base-color;
+}
+.dnd-desc em {
+  font-style: italic;
+}
+
+.dnd-core-stats {
+  font-size: 1.25rem;
 }

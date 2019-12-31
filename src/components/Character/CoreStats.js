@@ -4,44 +4,37 @@ const CoreStats = (data) => {
 
   //round down (stat - 10 ) / 2
   function statModifier(stat) {
-    return Math.floor((stat - 10) / 2)
+    return (Math.floor((stat - 10) / 2) >= 0) ? '+' + Math.floor((stat - 10) / 2) : Math.floor((stat - 10) / 2)
   }
 
   return (
-    <div className='core-stats'>
-
-      <div className='flex-horizontal'>
-        <div className='card stats'>
-          <p className='stat-title'>STR</p>
-          <p className='stat-value'>{data.data.strength}</p>
-          <p>({statModifier(data.data.strength)})</p>
-        </div>
-        <div className='card stats'>
-          <p className='stat-title'>DEX</p>
-          <p className='stat-value'>{data.data.dexterity}</p>
-          <p>({statModifier(data.data.dexterity)})</p>
-        </div>
-        <div className='card stats'>
-          <p className='stat-title'>CON</p>
-          <p className='stat-value'>{data.data.constitution}</p>
-          <p>({statModifier(data.data.constitution)})</p>
-        </div>
-        <div className='card stats'>
-          <p className='stat-title'>INT</p>
-          <p className='stat-value'>{data.data.intelligence}</p>
-          <p>({statModifier(data.data.intelligence)})</p>
-        </div>
-        <div className='card stats'>
-          <p className='stat-title'>WIS</p>
-          <p className='stat-value'>{data.data.wisdom}</p>
-          <p>({statModifier(data.data.wisdom)})</p>
-        </div>
-        <div className='card stats'>
-          <p className='stat-title'>CHA</p>
-          <p className='stat-value'>{data.data.charisma}</p>
-          <p>({statModifier(data.data.charisma)})</p>
-        </div>
-      </div>
+    <div className='dnd-section'>
+      <ul className='dnd-core-stats flex-horizontal'>
+        <li>
+          <p className='dnd-item-title'>STR </p>
+          <p>{data.data.strength} ({statModifier(data.data.strength)})</p>
+        </li>
+        <li>
+          <p className='dnd-item-title'>DEX </p>
+          <p>{data.data.dexterity} ({statModifier(data.data.dexterity)})</p>
+        </li>
+        <li>
+          <p className='dnd-item-title'>CON </p>
+          <p>{data.data.constitution} ({statModifier(data.data.constitution)})</p>
+        </li>
+        <li>
+          <p className='dnd-item-title'>INT </p>
+          <p>{data.data.intelligence} ({statModifier(data.data.intelligence)})</p>
+        </li>
+        <li>
+          <p className='dnd-item-title'>WIS </p>
+          <p>{data.data.wisdom} ({statModifier(data.data.wisdom)})</p>
+        </li>
+        <li>
+          <p className='dnd-item-title'>CHA </p>
+          <p>{data.data.charisma} ({statModifier(data.data.charisma)})</p>
+        </li>
+      </ul>
     </div>
   )
 }
