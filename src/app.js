@@ -9,6 +9,7 @@ import Home from './components/Home'
 import MonsterList from './components/MonsterList'
 import SingleMonster from './components/SingleMonster'
 import Header from './components/Header'
+import EncounterGenerator from './components/Calculators/encounterGenerator'
 
 const App = () => (
   <>
@@ -19,6 +20,7 @@ const App = () => (
         <Route exact path='/' component={Home} />
         <Route exact path='/monsters' component={MonsterList} />
         <Route exact path='/monsters/:slug' component={SingleMonster} />
+        <Route exact path='/encounter/generator' component={EncounterGenerator} />
 
       </Switch>
     </BrowserRouter>

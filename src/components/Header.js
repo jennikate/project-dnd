@@ -25,6 +25,11 @@ const Header = () => {
               <Link to='/monsters'>Monsters</Link>
             </div>
           </div>
+          <div className='navbar-menu'>
+            <div className='navbar-end'>
+              <Link to='/encounter/generator'>Encounter Generator</Link>
+            </div>
+          </div>
         </nav>
       </nav >
 
