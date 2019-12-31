@@ -42,8 +42,8 @@ const SingleMonster = (props) => {
     return <h1>Loading</h1>
   }
   return (
-    <section className='section'>
-      <div className='container dnd-card'>
+    <div>
+      <div className='dnd-card'>
         <Type data={monster} />
         <CoreStats data={monster} />
         <div className='dnd-section'>
@@ -59,7 +59,7 @@ const SingleMonster = (props) => {
           <Legendary data={monster} />
         </div>
       </div>
-    </section>
+    </div>
   )
 }
 

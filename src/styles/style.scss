@@ -8,13 +8,16 @@ $font-title: 'Cinzel', serif;
 $font: 'Open Sans', sans-serif;
 $card-font: serif;
 
-$title-color: red;
-$card-text-color: red;
+$brand-highlight: #71080a;
+$brand-secondary: #e5c03a;
+$shadow: 2px 5px 10px #888888;
+
+$title-color: #71080a;
+$card-text-color: #71080a;
 $base-color: black;
 
 
 $card-top: yellow;
-$card-line: red;
 $card-back: tan;
 
 .hide {
@@ -62,7 +65,7 @@ h2 {
   color: $title-color;
   text-transform: capitalize;
   font-variant: small-caps;
-  border-bottom: 1px solid $card-line;
+  border-bottom: 1px solid $brand-highlight;
   margin-top: 0.5rem;
 }
 
@@ -82,12 +85,15 @@ h2 {
 /* ================================== */
 
 .dnd-card {
-  border-top: 5px solid $card-top;
-  border-bottom: 5px solid $card-top;
-  margin: 2rem;
   background-color: $card-back;
   font-family: $card-font;
   color: $card-text-color;
+  box-shadow: $shadow;
+  width: 50%;
+  margin: 2rem;
+  border-image: linear-gradient(to right, $brand-secondary, $brand-highlight) 1;
+  border-width: 10px 0;
+  border-style: solid;
 }
 
 .dnd-section, .dnd-block {
@@ -95,7 +101,9 @@ h2 {
   padding-bottom: 0.5rem;
 }
 .dnd-section {
-  border-bottom: 4px solid $card-line;
+  border-image: linear-gradient(to right, $brand-highlight, transparent) 1;
+  border-width: 0 0 3px 0;
+  border-style: solid;
 }
 
 .dnd-item-title {
