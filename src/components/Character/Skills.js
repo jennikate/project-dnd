@@ -3,16 +3,33 @@ import arrayFromObj from '../../hooks/arrayFromObj'
 
 const Skills = (data) => {
 
+  const arr = arrayFromObj(data.data.skills)
+
   return (
-    <div className='skills'>
-      <h2>Skills</h2>
-      {arrayFromObj(data.data.skills).map((elem, i) => {
-        return (
-          <p key={i}>{elem.type}: {elem.value}</p>
-        )
-      })}
+
+    <div>
+      {arr.length > 0 &&
+        <p><span className='dnd-item-title'>Skills</span>
+          {arr.map((elem, i) => {
+            return (
+              <span key={i} className='title-case'>
+                {elem.type
+                  + (elem.value >= 0 ? ' +' : ' ')
+                  + elem.value
+                  + (i < arr.length - 1 ? ', ' : '')}
+              </span>
+            )
+          })}
+        </p>
+      }
     </div>
+
+
+
+
+
   )
 }
 
 export default Skills
+

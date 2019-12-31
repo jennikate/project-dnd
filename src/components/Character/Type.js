@@ -28,15 +28,6 @@ const Type = (data) => {
         </p>
       </div>
 
-     
-
-        <p>CR: {data.data.challenge_rating}</p>
-
-        {data.data.languages && <p>Languages: {data.data.languages}</p>}
-        <p>Speed:</p>
-
-
-
     </>
   )
 }

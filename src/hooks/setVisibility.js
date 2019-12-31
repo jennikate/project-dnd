@@ -1,10 +1,8 @@
 import React from 'react'
 
-//set visibility controls, pass in a condition that returns true if we want to hide things
-//used for when there are multiple conditionals to test
+//used for when we need to control titles, or if there are multiple condition checks
 function setVisibility(item) {
-  console.log(item)
-  return item === true ? 'hide' : 'show'
+  return item.length > 0 ? 'show' : 'hide'
 }
 
 export default setVisibility

@@ -64,6 +64,12 @@ h2 {
   text-transform: initial;
 }
 
+.title-case {
+  text-transform: capitalize;
+  display: inline-block; /* needed so that anything in a span is still recognised for title */
+  margin-right: 5px; /* needed to re-add a 'space' as inline-block removes it */
+}
+
 
 /* ================================== */
 /*  CARDS                             */
@@ -87,6 +93,8 @@ h2 {
 .dnd-item-title {
   color: $card-text-color;
   font-weight: bold;
+  display: inline-block;
+  margin-right: 5px;
 }
 
 .dnd-desc {

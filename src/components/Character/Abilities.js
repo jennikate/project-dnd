@@ -1,76 +1,47 @@
 import React from 'react'
-import setVisibility from '../../hooks/setVisibility'
 
 const Abilities = (data) => {
 
-  //turn strings into usable arrays
-  function makeArray(list) {
-    return list.replace(';', ',').replace('and', '').split(', ')
+  //turn strings into consistent grammar
+  function cleanString(list) {
+    return list.replace(';', ',').replace('and ', '').split(', ').join(', ')
+    
   }
+
 
   return (
     <div>
-      <div className='abilities'>
 
-        <h2 className={setVisibility(data.data.damage_immunities === '' && data.data.damage_resistances === '' && data.data.damage_vulnerabilities === '')}>Damage</h2>
-
-        {data.data.damage_vulnerabilities &&
-          <div className='ability-type'>
-            <h3>Vulnerabilities</h3>
-            <ul>
-              {makeArray(data.data.damage_vulnerabilities).map((elem, i) => {
-                return <li key={i}>{elem}</li>
-              })}
-            </ul>
-          </div>
-        }
-
-        {data.data.damage_resistances &&
-          <div className='ability-type'>
-            <h3>Resistances</h3>
-            <ul>
-              {makeArray(data.data.damage_resistances).map((elem, i) => {
-                return <li key={i}>{elem}</li>
-              })}
-            </ul>
-          </div>
-        }
-
-        {data.data.damage_immunities &&
-          <div className='ability-type'>
-            <h3>Immunities</h3>
-            <ul>
-              {makeArray(data.data.damage_immunities).map((elem, i) => {
-                return <li key={i}>{elem}</li>
-              })}
-            </ul>
-          </div>
-        }
-
-        {data.data.condition_immunities &&
-          <h2>Condition</h2>
-        }
-        {data.data.condition_immunities &&
-          <div className='ability-type'>
-            <h3>Immunities</h3>
-            <ul>
-              {makeArray(data.data.condition_immunities).map((elem, i) => {
-                return <li key={i}>{elem}</li>
-              })}
-            </ul>
-          </div>
-        }
-
-        {data.data.senses &&
-          <h2>Senses</h2>
-        }
-        <ul>
-          {makeArray(data.data.senses).map((elem, i) => {
-            return <li key={i}>{elem}</li>
-          })}
-        </ul>
-
-      </div>
+      {data.data.damage_vulnerabilities &&
+        <p>
+          <span className='dnd-item-title'>Damage Vulnerabilities</span>
+          <span className='title-case'>{cleanString(data.data.damage_vulnerabilities)}</span>
+        </p>
+      }
+      {data.data.damage_resistances &&
+        <p>
+          <span className='dnd-item-title'>Damage Vulnerabilities</span>
+          <span className='title-case'>{cleanString(data.data.damage_resistances)}</span>
+        </p>
+      }
+      {data.data.damage_immunities &&
+        <p>
+          <span className='dnd-item-title'>Damage Immunities</span>
+          <span className='title-case'>{cleanString(data.data.damage_immunities)}</span>
+        </p>
+      }
+      {data.data.condition_immunities &&
+        <p>
+          <span className='dnd-item-title'>Condition Immunities</span>
+          <span className='title-case'>{cleanString(data.data.condition_immunities)}</span>
+        </p>
+      }
+      {data.data.senses &&
+        <p>
+          <span className='dnd-item-title'>Senses</span>
+          <span className='title-case'>{cleanString(data.data.senses)}</span>
+        </p>
+      }
     </div>
 
   )

@@ -7,6 +7,8 @@ import Saves from './Character/Saves'
 import Type from './Character/Type'
 import Abilities from './Character/Abilities'
 import Skills from './Character/Skills'
+import Languages from './Character/Languages'
+import Challenge from './Character/Challenge'
 import Actions from './Character/Actions'
 import Legendary from './Character/Legendary'
 import CharSpells from './Character/CharSpells'
@@ -44,9 +46,13 @@ const SingleMonster = (props) => {
       <div className='container dnd-card'>
         <Type data={monster} />
         <CoreStats data={monster} />
-        <Saves data={monsterArray} />
-        <Abilities data={monster} />
-        <Skills data={monster} />
+        <div className='dnd-section'>
+          <Saves data={monsterArray} />
+          <Skills data={monster} />
+          <Abilities data={monster} />
+          <Languages data={monster} />
+          <Challenge data={monster} />
+        </div>
         <Actions data={monster} />
         <Legendary data={monster} />
         <CharSpells data={monster} />
