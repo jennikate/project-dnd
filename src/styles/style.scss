@@ -10,11 +10,12 @@ $card-font: serif;
 
 $brand-highlight: #71080a;
 $brand-secondary: #e5c03a;
+$base-color: #555555;
+$base-light: #aaaaaa;
 $shadow: 2px 5px 10px #888888;
 
 $title-color: #71080a;
 $card-text-color: #71080a;
-$base-color: black;
 
 $card-back: #ccb392;
 
@@ -37,7 +38,7 @@ section {
 
 .flex-horizontal {
   display: flex;
-  align-items: baseline;
+  align-items: center;
 }
 
 .flex-horizontal li {
@@ -126,4 +127,39 @@ h2 {
 .dnd-card-list {
   margin-bottom: 0.5rem;
   display: inline-block;
+}
+
+
+
+/* ================================== */
+/*  FORM                              */
+/* ================================== */
+
+form {
+  padding: 1.5rem;
+}
+
+.counter {
+  width: 40px;
+  height: 40px;
+  margin: 0 3px 0 0;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  cursor: pointer;
+  color: $brand-highlight;
+  background-color: white;
+  border: 2px solid $brand-highlight;
+  border-radius: 3px;
+  width: 7rem;
+  height: 2rem;
+  font-size: 1rem;
+}
+button:hover {
+  background-color: $brand-highlight;
+  color: white;
 }

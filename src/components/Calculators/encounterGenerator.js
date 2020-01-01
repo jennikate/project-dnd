@@ -1,5 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
+import ReactDOM from 'react-dom'
+
 import calcThreshold from './calcThreshold'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
+
 
 
 const encounterGenerator = () => {
@@ -44,20 +50,56 @@ const encounterGenerator = () => {
 
 
   // once we get a form up, the results will plug into here to run the calculations
-  const formResult = calcThreshold('medium', [3,2,3,3])
-  const crOptions = calculateMonsterCRs(formResult)
-  const crMax = crOptions[crOptions.length - 1].cr
+  // const formResult = calcThreshold('medium', [3, 2, 3, 3])
+  // const crOptions = calculateMonsterCRs(formResult)
+  // const crMax = crOptions[crOptions.length - 1].cr
+
+  const [count, setCount] = useState(0)
+  const [players, setPlayers] = useState([]) //figure out how to populate this on add or subtract so then can map it to UI to ask user to enter player levels
+
+  const handleClick = (e, operator) => {
+    e.preventDefault()
+    if ( operator === 'add' ) {
+      setCount(count + 1)
+    } else if ( operator === 'subtract') {
+      setCount(count - 1)
+    }
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  }
 
 
   return (
     <>
       <h1>Encounter Generator</h1>
 
-      <p>Mode: Medium (note, will get this from the form)</p>
-      <p>XP Threshold for monster selection : {formResult}</p>
-      <p>You can consider monsters up to CR level : {crMax}</p>
+      <form className='form'>
+
+        <div className='field'>
+          <label className='label'>Number of players</label>
+          <div className='flex-horizontal'>
+            <button className='counter' onClick={(e) => handleClick(e, 'subtract')}><FontAwesomeIcon icon={faMinus} /></button>
+            <p className='counter input' type='text' name='playerCount'>{count}</p>
+            <button className='counter' onClick={(e) => handleClick(e, 'add')}><FontAwesomeIcon icon={faPlus} /></button>
+          </div>
+        </div>
+
+        <div className='field'>
+          <label className='label'>Player level</label>
+          
+        </div>
+
+        <button onClick={handleSubmit}>Calculate</button>
+      </form>
+
     </>
   )
 }
 
 export default encounterGenerator
+
+{/* <p>Mode: Medium (note, will get this from the form)</p>
+      <p>XP Threshold for monster selection : {formResult}</p>
+      <p>You can consider monsters up to CR level : {crMax}</p> */}

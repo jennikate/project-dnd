@@ -19,6 +19,7 @@ to do
 
 BUGS
 [ ] find a monster with reactions and test that content
+[ ] you can go to -1 players on the encounter form
 
 
 
