@@ -33,7 +33,7 @@ header {
 }
 
 section {
-  border: 1px solid green;
+  padding: 1.5rem;
 }
 
 .flex-horizontal {
@@ -135,9 +135,7 @@ h2 {
 /*  FORM                              */
 /* ================================== */
 
-form {
-  padding: 1.5rem;
-}
+
 
 .counter {
   width: 40px;
