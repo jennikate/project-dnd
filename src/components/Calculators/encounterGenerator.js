@@ -61,10 +61,13 @@ const encounterGenerator = () => {
     e.preventDefault()
     if ( operator === 'add' ) {
       setCount(count + 1)
+      setPlayers([...players, 'player' + (count + 1)])
     } else if ( operator === 'subtract') {
       setCount(count - 1)
+      players.pop()
     }
   }
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -88,7 +91,13 @@ const encounterGenerator = () => {
 
         <div className='field'>
           <label className='label'>Player level</label>
-          
+          {players && 
+            players.map((elem, i) => {
+              return (
+                <p key={i}>{elem}</p>
+              )
+            })
+          } 
         </div>
 
         <button onClick={handleSubmit}>Calculate</button>
