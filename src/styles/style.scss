@@ -148,6 +148,9 @@ form {
   align-items: center;
   justify-content: center;
 }
+p + .counter {
+  margin-left: 3px;
+}
 
 button {
   cursor: pointer;
@@ -163,3 +166,45 @@ button:hover {
   background-color: $brand-highlight;
   color: white;
 }
+
+/* RADIO BUTTONS */
+/* The container */
+.radio-container {
+  position: relative;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-right: 15px;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+
+/* Hide the browser's default radio button */
+.radio-container input {
+  opacity: 0;
+  width: 5px;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  height: 20px;
+  width: 20px;
+  border: 1px solid $brand-highlight;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a background color */
+.radio-container:hover input ~ .checkmark {
+  background-color: $brand-highlight;
+}
+
+/* When the radio button is checked, add a background */
+.radio-container input:checked ~ .checkmark {
+  background-color:$brand-highlight;
+}
+

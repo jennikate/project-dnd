@@ -53,24 +53,61 @@ const encounterGenerator = () => {
   // const formResult = calcThreshold('medium', [3, 2, 3, 3])
   // const crOptions = calculateMonsterCRs(formResult)
   // const crMax = crOptions[crOptions.length - 1].cr
+  const [diffLevel, setDiffLevel] = useState(0)
 
-  const [count, setCount] = useState(0)
-  const [players, setPlayers] = useState([]) //figure out how to populate this on add or subtract so then can map it to UI to ask user to enter player levels
+  const [pNum, setPNum] = useState(0)
+  const [pInput, setPInput] = useState([])  //used to create input fields to take player leve
+  const [pSameLevel, setPSameLevel] = useState('No')
+  const [pLevels, setPLevels] = useState([])
 
-  const handleClick = (e, operator) => {
-    e.preventDefault()
-    if ( operator === 'add' ) {
-      setCount(count + 1)
-      setPlayers([...players, 'player' + (count + 1)])
-    } else if ( operator === 'subtract') {
-      setCount(count - 1)
-      players.pop()
+
+
+  const setPlayerLevelStatus = (e) => {
+    setPSameLevel(e.target.value)
+    if (e.target.value === 'Yes') { 
+      setPInput([]) 
+      setPLevels([]) //clear any plevels
     }
   }
 
 
+  const handleAddSubtract = (e, operator) => {
+    e.preventDefault()
+    //if user clicks add, increase the number of players (pNum) 
+    if (operator === 'add') {
+      setPNum(pNum + 1)
+      //and if they have stated that all players are not the same level, then add an input field for each players level (pInput)
+      if (pSameLevel === 'No') { setPInput([...pInput, 'Player ' + (pNum + 1)]) }
+    //if user clicks subtract
+    } else if (operator === 'subtract') {
+      //reduce the number of players
+      setPNum(pNum - 1)
+      //remove the level from level array if it exists
+      pLevels.pop() 
+      //and if they have stated that all players are not the same level, then remove an input field, and remove the level from the levels array
+      if (pSameLevel === 'No') { 
+        pInput.pop()  //remove the input field (always just drops last field)
+      }
+    }
+  }
+
+  const handleLevelChange = (e) => {
+    const newArr = []
+    if (pSameLevel === 'Yes') {
+      for (let i = 0; i < pNum; i++) {
+        newArr.push(e.target.value) //if all players are same level is YES, then loops through number of players creating an array of levels for them
+      }
+      setPLevels(newArr) 
+    } else {
+      setPLevels([...pLevels, e.target.value]) //if all players are same level is NO, this takes the levels as entered and adds to array
+    }
+  }
+
+
+
   const handleSubmit = (e) => {
     e.preventDefault()
+    setDiffLevel(calcThreshold('medium', pLevels))
   }
 
 
@@ -79,29 +116,55 @@ const encounterGenerator = () => {
       <h1>Encounter Generator</h1>
 
       <form className='form'>
+        <h2>Players</h2>
+
+        <div className='field' onChange={e => setPlayerLevelStatus(e)}>
+          <label className='label'>Are all players the same level?</label>
+          <label className='radio-container'>Yes
+            <input type='radio' name='radio' value='Yes' />
+            <span className='checkmark'></span>
+          </label>
+          <label className='radio-container'>No
+            <input type='radio' name='radio' value='No' defaultChecked />
+            <span className='checkmark'></span>
+          </label>
+        </div>
 
         <div className='field'>
           <label className='label'>Number of players</label>
           <div className='flex-horizontal'>
-            <button className='counter' onClick={(e) => handleClick(e, 'subtract')}><FontAwesomeIcon icon={faMinus} /></button>
-            <p className='counter input' type='text' name='playerCount'>{count}</p>
-            <button className='counter' onClick={(e) => handleClick(e, 'add')}><FontAwesomeIcon icon={faPlus} /></button>
+            <button className='counter' onClick={(e) => handleAddSubtract(e, 'subtract')}><FontAwesomeIcon icon={faMinus} /></button>
+            <p className='counter input' type='text' name='playerCount'>{pNum}</p>
+            <button className='counter' onClick={(e) => handleAddSubtract(e, 'add')}><FontAwesomeIcon icon={faPlus} /></button>
           </div>
         </div>
 
         <div className='field'>
           <label className='label'>Player level</label>
-          {players && 
-            players.map((elem, i) => {
+          {(pSameLevel === 'No' && pInput) &&
+            pInput.map((elem, i) => {
               return (
-                <p key={i}>{elem}</p>
+                <div key={i} className='flex-horizontal'>
+                  <p>Player level:</p>
+                  <input className='counter input' type='text' onChange={e => handleLevelChange(e)} />
+                </div>
               )
             })
-          } 
+          }
+          {(pSameLevel === 'Yes') &&
+            <div className='flex-horizontal'>
+              <p>Players level:</p>
+              <input className='counter input' type='text' onChange={e => handleLevelChange(e)} />
+            </div>
+          }
         </div>
 
-        <button onClick={handleSubmit}>Calculate</button>
+
+
+        <button onClick={e => handleSubmit(e)}>Calculate</button>
       </form>
+      
+      <h2>{diffLevel}</h2>
 
     </>
   )
