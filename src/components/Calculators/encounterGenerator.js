@@ -67,10 +67,10 @@ const encounterGenerator = () => {
 
   const setPlayerLevelStatus = (e) => {
     setPSameLevel(e.target.value)
-    if (e.target.value === 'Yes') {
-      setPInput([])
-      setPLevels([]) //clear any plevels
-    }
+    //clear any existing player data
+    setPInput([])
+    setPLevels([])
+    setPNum(0)
   }
 
 
@@ -98,15 +98,21 @@ const encounterGenerator = () => {
     const newArr = []
     if (pSameLevel === 'Yes') {
       for (let i = 0; i < pNum; i++) {
-        newArr.push(e.target.value) //if all players are same level is YES, then loops through number of players creating an array of levels for them
+        // newArr.push(e.target.value) //if all players are same level is YES, then loops through number of players creating an array of levels for them
+        newArr.push(
+          {
+            name: `Player ${i}`,
+            value: e.target.value
+          }
+        )
+        setPLevels(newArr)
       }
-      setPLevels(newArr)
     } else { //if all players are same level is NO, this takes the levels as entered and adds to array
-      setPLevels([ ...pLevels, 
-        {
-          name: e.target.id,
-          value: e.target.value
-        }
+      setPLevels([...pLevels,
+      {
+        name: e.target.id,
+        value: e.target.value
+      }
       ])
     }
   }
@@ -128,7 +134,7 @@ const encounterGenerator = () => {
 
   return (
     <>
-    
+
       <h1>Encounter Generator</h1>
 
       <section className=''>
